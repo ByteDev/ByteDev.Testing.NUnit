@@ -9,7 +9,7 @@
     <copyright>Copyright 2020</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET Standard library that provides some extra NUnit functionality.</description>
-    <tags>testing tests</tags>
+    <tags>nunit testing tests unit integration</tags>
     <projectUrl>https://github.com/ByteDev/ByteDev.Testing.NUnit</projectUrl>
     <icon>images\icon.png</icon>
     <license type="file">LICENSE</license>
