@@ -101,17 +101,37 @@ namespace ByteDev.Testing.NUnit.IntTests
             [Test]
             public void WhenSizeIsEqualNumber_ThenAssertTrue()
             {
-                var file1 = BaseDir.CreateFile("SizeEquals-Test1.txt", "test1");
+                var file = BaseDir.CreateFile("SizeEquals-Test1.txt", "test1");
 
-                Assert.DoesNotThrow(() => AssertFile.SizeEquals(file1, 5));
+                Assert.DoesNotThrow(() => AssertFile.SizeEquals(file, 5));
             }
 
             [Test]
             public void WhenSizeIsNotEqualNumber_ThenAssertFalse()
             {
-                var file1 = BaseDir.CreateFile("SizeEquals-Test1.txt", "test1");
+                var file = BaseDir.CreateFile("SizeEquals-Test1.txt", "test1");
 
-                Assert.Throws<AssertionException>(() => AssertFile.SizeEquals(file1, 6));
+                Assert.Throws<AssertionException>(() => AssertFile.SizeEquals(file, 6));
+            }
+        }
+
+        [TestFixture]
+        public class IsEmpty : AssertFileTests
+        {
+            [Test]
+            public void WhenFileIsEmpty_ThenAssertTrue()
+            {
+                var file = BaseDir.CreateFile("SizeEquals-Test1.txt", string.Empty);
+
+                Assert.DoesNotThrow(() => AssertFile.IsEmpty(file));
+            }
+
+            [Test]
+            public void WhenFileIsNotEmpty_ThenAssertFalse()
+            {
+                var file = BaseDir.CreateFile("SizeEquals-Test1.txt", "A");
+                
+                Assert.Throws<AssertionException>(() => AssertFile.IsEmpty(file));
             }
         }
     }

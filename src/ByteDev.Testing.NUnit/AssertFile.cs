@@ -114,7 +114,26 @@ namespace ByteDev.Testing.NUnit
             NotExists(originalPath);
             Exists(targetPath);
         }
-        
+
+        /// <summary>
+        /// Assert a file is empty.
+        /// </summary>
+        /// <param name="actualFilePath">Path of file to check.</param>
+        public static void IsEmpty(string actualFilePath)
+        {
+            SizeEquals(actualFilePath, 0);
+        }
+
+        /// <summary>
+        /// Assert a file is empty.
+        /// </summary>
+        /// <param name="actualFile">File to check.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="actualFile" /> is null.</exception>
+        public static void IsEmpty(FileInfo actualFile)
+        {
+            SizeEquals(actualFile, 0);
+        }
+
         /// <summary>
         /// Assert two files are equal in size.
         /// </summary>

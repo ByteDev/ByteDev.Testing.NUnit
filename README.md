@@ -45,6 +45,7 @@ File related assertions. Methods include:
 - AreSame
 - Exists
 - HasMoved
+- IsEmpty
 - NotExists
 - SizeEquals
 

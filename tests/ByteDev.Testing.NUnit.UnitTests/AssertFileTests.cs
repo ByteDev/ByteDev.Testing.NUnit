@@ -26,5 +26,15 @@ namespace ByteDev.Testing.NUnit.UnitTests
                 Assert.Throws<ArgumentNullException>(() => AssertFile.NotExists(null as FileInfo));
             }
         }
+
+        [TestFixture]
+        public class IsEmpty : AssertFileTests
+        {
+            [Test]
+            public void WhenFileIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => AssertFile.IsEmpty(null as FileInfo));
+            }
+        }
     }
 }
