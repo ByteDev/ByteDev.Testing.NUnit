@@ -283,17 +283,49 @@ namespace ByteDev.Testing.NUnit
         /// <summary>
         /// Assert a file is greater than a certain size.
         /// </summary>
-        /// <param name="actualFilePath">Actual file to check.</param>
+        /// <param name="actualFile">Actual file to check.</param>
         /// <param name="expectedSize">Size in bytes.</param>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="actualFilePath" /> is null.</exception>
-        public static void SizeGreaterThan(FileInfo actualFilePath, long expectedSize)
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="actualFile" /> is null.</exception>
+        public static void SizeGreaterThan(FileInfo actualFile, long expectedSize)
         {
-            if (actualFilePath == null)
-                throw new ArgumentNullException(nameof(actualFilePath));
+            if (actualFile == null)
+                throw new ArgumentNullException(nameof(actualFile));
 
-            var actualSize = actualFilePath.Length;
+            var actualSize = actualFile.Length;
 
-            Assert.That(actualSize, Is.GreaterThan(expectedSize), $"File: '{actualFilePath.FullName}' was expected to be greater than {expectedSize} bytes but was actually {actualSize} bytes.");
+            Assert.That(actualSize, Is.GreaterThan(expectedSize), $"File: '{actualFile.FullName}' was expected to be greater than {expectedSize} bytes but was actually {actualSize} bytes.");
+        }
+
+        /// <summary>
+        /// Assert a file's contents equals a given string.
+        /// </summary>
+        /// <param name="actualFile">Actual file to check.</param>
+        /// <param name="expectedContent">Expected content.</param>
+        /// <param name="encoding">Text encoding.</param>
+        public static void ContentEquals(FileInfo actualFile, string expectedContent, System.Text.Encoding encoding = null)
+        {
+            if (actualFile == null)
+                throw new ArgumentNullException(nameof(actualFile));
+
+            ContentEquals(actualFile.FullName, expectedContent, encoding);
+        }
+
+        /// <summary>
+        /// Assert a file's contents equals a given string.
+        /// </summary>
+        /// <param name="actualFilePath">Path of actual file to check.</param>
+        /// <param name="expectedContent">Expected content.</param>
+        /// <param name="encoding">Text encoding.</param>
+        public static void ContentEquals(string actualFilePath, string expectedContent, System.Text.Encoding encoding = null)
+        {
+            if (encoding == null)
+                encoding = System.Text.Encoding.UTF8;
+
+            using (var sr = new StreamReader(actualFilePath, encoding))
+            {
+                var actualContents = sr.ReadToEnd();
+                Assert.That(actualContents, Is.EqualTo(expectedContent), $"File: '{actualFilePath}' does not contain the expected contents.");
+            }
         }
     }
 }

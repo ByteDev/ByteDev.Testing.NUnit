@@ -43,11 +43,14 @@ Directory related assertions. Methods include:
 File related assertions. Methods include:
 
 - AreSame
+- ContentEquals
 - Exists
 - HasMoved
 - IsEmpty
 - NotExists
 - SizeEquals
+- SizeLessThan
+- SizeGreaterThan
 
 ### AssertImage
 

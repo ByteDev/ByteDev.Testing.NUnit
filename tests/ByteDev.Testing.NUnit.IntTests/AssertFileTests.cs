@@ -134,5 +134,29 @@ namespace ByteDev.Testing.NUnit.IntTests
                 Assert.Throws<AssertionException>(() => AssertFile.IsEmpty(file));
             }
         }
+
+        [TestFixture]
+        public class ContentEquals : AssertFileTests
+        {
+            [Test]
+            public void WhenFileContentIsExpected_ThenAssertTrue()
+            {
+                const string content = "test1";
+
+                var file = BaseDir.CreateFile("ContentEquals-Test1.txt", content);
+
+                Assert.DoesNotThrow(() => AssertFile.ContentEquals(file, content));
+            }
+
+            [Test]
+            public void WhenFileContentIsNotExpected_ThenAssertFalse()
+            {
+                const string content = "test1";
+
+                var file = BaseDir.CreateFile("ContentEquals-Test2.txt", content);
+
+                Assert.Throws<AssertionException>(() => AssertFile.ContentEquals(file, content + "A"));
+            }
+        }
     }
 }
