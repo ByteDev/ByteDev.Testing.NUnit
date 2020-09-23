@@ -7,6 +7,7 @@ Breaking changes:
 
 New features:
 - Added AssertFile.ContentEquals
+- Added AssertFile.ModifiedSince
 
 Bug fixes / internal changes:
 - (None)

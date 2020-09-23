@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Threading;
 using NUnit.Framework;
 
 namespace ByteDev.Testing.NUnit.IntTests
@@ -156,6 +158,30 @@ namespace ByteDev.Testing.NUnit.IntTests
                 var file = BaseDir.CreateFile("ContentEquals-Test2.txt", content);
 
                 Assert.Throws<AssertionException>(() => AssertFile.ContentEquals(file, content + "A"));
+            }
+        }
+
+        [TestFixture]
+        public class ModifiedSince : AssertFileTests
+        {
+            [Test]
+            public void WhenFileHasBeenModifiedSince_ThenAssertTrue()
+            {
+                var since = DateTime.Now;
+                
+                var file = BaseDir.CreateFile("ModifiedSince-Test1.txt");
+
+                Assert.DoesNotThrow(() => AssertFile.ModifiedSince(file, since));
+            }
+
+            [Test]
+            public void WhenFileHasNotBeenModifiedSince_ThenAssertFalse()
+            {
+                var file = BaseDir.CreateFile("ModifiedSince-Test1.txt");
+                
+                var since = DateTime.Now;
+
+                Assert.Throws<AssertionException>(() => AssertFile.ModifiedSince(file, since));
             }
         }
     }

@@ -302,6 +302,7 @@ namespace ByteDev.Testing.NUnit
         /// <param name="actualFile">Actual file to check.</param>
         /// <param name="expectedContent">Expected content.</param>
         /// <param name="encoding">Text encoding.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="actualFile" /> is null.</exception>
         public static void ContentEquals(FileInfo actualFile, string expectedContent, System.Text.Encoding encoding = null)
         {
             if (actualFile == null)
@@ -326,6 +327,30 @@ namespace ByteDev.Testing.NUnit
                 var actualContents = sr.ReadToEnd();
                 Assert.That(actualContents, Is.EqualTo(expectedContent), $"File: '{actualFilePath}' does not contain the expected contents.");
             }
+        }
+
+        /// <summary>
+        /// Assert a file has been modfied since a given DateTime.
+        /// </summary>
+        /// <param name="actualFilePath">Path of actual file to check.</param>
+        /// <param name="since">DateTime since.</param>
+        public static void ModifiedSince(string actualFilePath, DateTime since)
+        {
+            ModifiedSince(new FileInfo(actualFilePath), since);
+        }
+
+        /// <summary>
+        /// Assert a file has been modfied since a given DateTime.
+        /// </summary>
+        /// <param name="actualFile">Actual file to check.</param>
+        /// <param name="since">DateTime since.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="actualFile" /> is null.</exception>
+        public static void ModifiedSince(FileInfo actualFile, DateTime since)
+        {
+            if (actualFile == null)
+                throw new ArgumentNullException(nameof(actualFile));
+
+            Assert.That(actualFile.LastWriteTime, Is.GreaterThan(since));
         }
     }
 }
