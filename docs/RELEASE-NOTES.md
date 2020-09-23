@@ -1,6 +1,6 @@
 # Release Notes
 
-## 1.2.0 - ?? September 2020
+## 1.2.0 - 23 September 2020
 
 Breaking changes:
 - (None)
