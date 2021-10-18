@@ -167,7 +167,7 @@ namespace ByteDev.Testing.NUnit.IntTests
             [Test]
             public void WhenFileHasBeenModifiedSince_ThenAssertTrue()
             {
-                var since = DateTime.Now;
+                var since = DateTime.Now.AddSeconds(-1);
                 
                 var file = BaseDir.CreateFile("ModifiedSince-Test1.txt");
 

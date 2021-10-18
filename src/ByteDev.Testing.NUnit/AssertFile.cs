@@ -39,10 +39,10 @@ namespace ByteDev.Testing.NUnit
         /// <param name="expectedFilePath">Path to expected file in the comparison.</param>
         public static void AreSame(string actualFilePath, string expectedFilePath)
         {
-            var service = new HashService(new Md5Algorithm(), EncodingType.Base64);
-
-            var actualHash = service.CalcFileChecksum(actualFilePath);
-            var expectedHash = service.CalcFileChecksum(expectedFilePath);
+            var service = new FileChecksumService(new Md5Algorithm(), EncodingType.Base64);
+            
+            var actualHash = service.Calculate(actualFilePath);
+            var expectedHash = service.Calculate(expectedFilePath);
 
             Assert.That(actualHash, Is.EqualTo(expectedHash));
         }

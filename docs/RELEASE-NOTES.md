@@ -1,5 +1,16 @@
 # Release Notes
 
+## 1.2.1 - 18 October 2021
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Package dependency updates.
+
 ## 1.2.0 - 23 September 2020
 
 Breaking changes:
