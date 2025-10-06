@@ -1,5 +1,16 @@
 # Release Notes
 
+## 2.0.0 - ?
+
+Breaking changes:
+- Target Framework changed to .NET 8.0
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Package dependency updates.
+
 ## 1.2.1 - 18 October 2021
 
 Breaking changes:
